@@ -1,10 +1,17 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ProductType, Product, Review
 from .forms import ProductForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
     return render(request, 'TechReviewApp/index.html')
+
+def loginmessage(request):
+    return render(request, 'TechReviewApp/loginmessage.html')
+
+def logoutmessage(request):
+    return render(request, 'TechReviewApp/logoutmessage.html')
 
 def gettypes(request):
     type_list=ProductType.objects.all()
@@ -25,6 +32,7 @@ def productdetails(request, id):
     }
     return render(request, 'TechReviewApp/productdetails.html', context=context)
 
+@login_required
 def newproduct(request):
     form=ProductForm()
     if request.method=='POST':
