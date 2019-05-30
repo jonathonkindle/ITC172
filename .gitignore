@@ -1,3 +1,9 @@
 # ignore these files
 
+*.pyc
+*~
+__pycache__
 env01
+db.sqlite3
+/static
+.DS_Store
